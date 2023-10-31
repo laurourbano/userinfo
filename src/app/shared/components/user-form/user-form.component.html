@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Ex. Lauro" formControlName="name" required>
+        <mat-error *ngIf="form.get('name')?.invalid&&form.touched">Nome é obrigatório</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. lauro@email.com" formControlName="email" required>
+        <mat-error *ngIf="form.get('email')?.invalid&&form.touched">Email é obrigatório</mat-error>
+      </mat-form-field>
+      <ng-container>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+    <mat-cell  *matCellDef="let user"> {{user.id}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell  *matCellDef="let user"> {{user.name}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell  *matHeaderCellDef> Email </mat-header-cell>
+    <mat-cell  *matCellDef="let user"> {{user.email}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="acoes">
+    <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      <button mat-icon-button color="primary" (click)="editar(user.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onDelete(user)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row  *matRowDef="let user; columns: displayedColumns;"></mat-row>
+</table>
