@@ -33,13 +33,6 @@ export class UserListComponent {
     );
   }
 
-  onEdit(id: number, user: User) {
-    const index = this.users.findIndex((u) => u.id === id);
-    this._service.update(index, user).subscribe(() => {
-      return this.getUsers();
-    }
-    );
-  }
 
   editar(userId: number) {
     const user = this.users.find((u) => u.id === userId);
