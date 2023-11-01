@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,26 +10,19 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: [ './user-form.component.scss' ]
 })
 export class UserFormComponent {
-  user: User = {
-    name: '',
-    email: ''
-  }
+  user!: User
 
-  form: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [ Validators.required, Validators.email ])
+  });
 
-  constructor(private _fb: NonNullableFormBuilder, private _service: UserService) {
-    const { name, email } = this.user;
-    this.form = this._fb.group({
-      name: [ name, Validators.required ],
-      email: [ email, [ Validators.required, Validators.email ] ]
-    });
-
+  constructor(private _fb: NonNullableFormBuilder, private _service: UserService, private route: ActivatedRoute, private router: Router) {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    console.log(this.form.value, '4');
     return this.form.value;
   }
-
 
 }

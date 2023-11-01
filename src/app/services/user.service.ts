@@ -13,11 +13,11 @@ export class UserService {
   constructor(private _http: HttpClient) { }
 
   getUsers() {
-    return this._http.get(this.Url);
+    return this._http.get<User[]>(this.Url);
   }
 
   getUser(id: number) {
-    return this._http.get<User[]>(`${ this.Url }/${ id }`);
+    return this._http.get<User>(`${ this.Url }/${ id }`);
   }
 
   post(user: User) {

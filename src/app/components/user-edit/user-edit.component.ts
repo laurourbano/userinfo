@@ -14,10 +14,8 @@ export class UserEditComponent {
 
   constructor(private _service: UserService) {
     this.users = [];
-    this.user = {
-      name: 'juca',
-      email: 'juca@exemplo.com'
-    }
+    this.user = { name: '', email: '' };
+
   }
 
   onSubmit() {

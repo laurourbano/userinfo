@@ -21,7 +21,7 @@ export class UserListComponent {
 
   getUsers() {
     this._service.getUsers().subscribe((users) => {
-      this.users = users as User[];
+      this.users = users;
       this.dataSource = this.users; // add this line to update dataSource
     });
   }
@@ -33,10 +33,14 @@ export class UserListComponent {
     );
   }
 
-
   editar(userId: number) {
     const user = this.users.find((u) => u.id === userId);
     console.log(user)
     this.router.navigate([ `edit/${ user?.id}` ], { relativeTo: this.route });
+  }
+
+  criar() {
+    console.log(this.router, this.route)
+    this.router.navigate([ `create` ], { relativeTo: this.route });
   }
 }
