@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { endWith } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  readonly Url: string = 'http://localhost:3000/users';
+  readonly Url: string = 'http://localhost:3000/api/users';
 
   constructor(private _http: HttpClient) { }
 
@@ -16,7 +15,7 @@ export class UserService {
     return this._http.get<User[]>(this.Url);
   }
 
-  getUser(id: number) {
+  getUserById(id: number) {
     return this._http.get<User>(`${ this.Url }/${ id }`);
   }
 
@@ -24,7 +23,7 @@ export class UserService {
     return this._http.post<User>(this.Url, user);
   }
 
-  update(id: number, user: User ) {
+  update(id: number, user: User) {
     return this._http.patch<User>(`${ this.Url }/${ id }`, user);
   }
 

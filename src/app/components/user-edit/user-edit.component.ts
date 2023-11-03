@@ -18,12 +18,19 @@ export class UserEditComponent {
 
   }
 
+  getUserEdit(id: number) {
+    this._service.getUserById(id).subscribe((user: User) => {
+      this.user = user;
+    });
+  }
+
   onSubmit() {
     console.log(this.user);
   }
 
   onEdit(userId: number, user: User) {
     const index: number = this.users.findIndex((u) => u.id === userId);
+    console.log('edit', index);
     if (index !== -1) {
       this._service.update(userId, user).subscribe(() => {
         this.users[ index ] = user;

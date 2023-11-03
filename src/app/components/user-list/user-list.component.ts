@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserListComponent {
   users: User[] = [];
+  user!: User;
 
   displayedColumns: string[] = [ 'id', 'name', 'email', 'acoes' ];
   dataSource: User[] = [];
@@ -20,10 +21,17 @@ export class UserListComponent {
   }
 
   getUsers() {
-    this._service.getUsers().subscribe((users) => {
+    this._service.getUsers().subscribe((users: User[]) => {
       this.users = users;
       this.dataSource = this.users; // add this line to update dataSource
     });
+  }
+
+  getUserById(id: number) {
+    this._service.getUserById(id).subscribe((user: User) => {
+      this.user = user;
+    }
+    );
   }
 
   onDelete(user: User) {
@@ -33,13 +41,13 @@ export class UserListComponent {
     );
   }
 
-  editar(userId: number) {
+  onEdit(userId: number) {
     const user = this.users.find((u) => u.id === userId);
-    console.log(user)
-    this.router.navigate([ `edit/${ user?.id}` ], { relativeTo: this.route });
+    console.log('list', user)
+    this.router.navigate([ `edit/${ user?.id }` ], { relativeTo: this.route });
   }
 
-  criar() {
+  onCreate() {
     console.log(this.router, this.route)
     this.router.navigate([ `create` ], { relativeTo: this.route });
   }

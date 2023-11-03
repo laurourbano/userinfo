@@ -1,5 +1,7 @@
 <mat-toolbar>
-  <button mat-mini-fab (click)="criar()" color="primary"><mat-icon class="mat-18">add</mat-icon></button>
+  <button mat-mini-fab (click)="onCreate()" color="primary">
+    <mat-icon class="mat-18">add</mat-icon>
+  </button>
 </mat-toolbar>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -9,26 +11,26 @@
   <!-- Position Column -->
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-    <mat-cell  *matCellDef="let user"> {{user.id}} </mat-cell>
+    <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell  *matCellDef="let user"> {{user.name}} </mat-cell>
+    <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="email">
-    <mat-header-cell  *matHeaderCellDef> Email </mat-header-cell>
-    <mat-cell  *matCellDef="let user"> {{user.email}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="acoes">
     <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
     <mat-cell *matCellDef="let user">
-      <button mat-icon-button color="primary" (click)="editar(user.id)">
+      <button mat-icon-button color="primary" (click)="onEdit(user.id)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" (click)="onDelete(user)">
@@ -37,6 +39,6 @@
     </mat-cell>
   </ng-container>
 
-  <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row  *matRowDef="let user; columns: displayedColumns;"></mat-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let user; columns: displayedColumns;"></mat-row>
 </table>
